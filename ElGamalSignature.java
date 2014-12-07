@@ -1,3 +1,6 @@
+package cryptography;
+
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
@@ -14,7 +17,7 @@ public class ElGamalSignature {
 	private static String SHA_256 = "SHA_256";
 	private static String ENCRYPTION_EXPONENT = "65537";
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		BigInteger primeP, primeQ, n, phi;
 		BigInteger encryptionExponent = new BigInteger(ENCRYPTION_EXPONENT);
@@ -29,7 +32,13 @@ public class ElGamalSignature {
 		} while(!isRelativelyPrime(phi, encryptionExponent));
 		
 		BigInteger dencryptionExponent = modMultiplicitiveInverse(phi, encryptionExponent);
-		System.out.println(dencryptionExponent);
+		System.out.println(dencryptionExponent.equals(phi.modInverse(encryptionExponent)));
+		
+		
+		FileManager fileManager = new FileManager();
+		byte [] plainText = fileManager.readTextFileBytes("ElGamalSignature.java");
+		
+		
 	}
 
 	/*
