@@ -1,4 +1,3 @@
-package cryptography;
 
 import java.io.IOException;
 import java.math.BigInteger;
